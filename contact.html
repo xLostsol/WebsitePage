@@ -63,7 +63,7 @@
                     <p class="section-subtitle">I'm always open to discussing new opportunities, sharing ideas, or just having a friendly chat about technology and engineering.</p>
                 </div>
 
-                <div class="email-display">
+                <div class="email-display" tabindex="0" role="button" aria-label="Click to reveal email address">
                     <div class="email-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -230,14 +230,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const emailContainer = document.querySelector('.email-container');
+            const emailDisplay = document.querySelector('.email-display');
             const emailHidden = document.querySelector('.email-hidden');
             const emailAddress = document.querySelector('.email-address');
             
-            if (emailContainer) {
-                emailContainer.addEventListener('click', () => {
+            if (emailDisplay) {
+                emailDisplay.addEventListener('click', function() {
                     emailHidden.classList.add('hidden');
                     emailAddress.classList.remove('hidden');
+                });
+                
+                emailDisplay.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        emailHidden.classList.add('hidden');
+                        emailAddress.classList.remove('hidden');
+                        e.preventDefault();
+                    }
                 });
             }
         });
