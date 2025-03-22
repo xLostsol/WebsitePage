@@ -1,0 +1,89 @@
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -10;
+    background: #0a0a1a;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(59, 173, 227, 0.1) 0%, rgba(87, 111, 230, 0.1) 25%, rgba(152, 68, 183, 0.1) 51%, rgba(255, 53, 127, 0.1) 100%);
+    opacity: 0.7;
+    z-index: -9;
+}
+
+.noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNzUiIG51bU9jdGF2ZXM9IjQiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHNlZWQ9IjE1IiByZXN1bHQ9InR1cmJ1bGVuY2UiLz48ZmVDb2xvck1hdHJpeCB0eXBlPSJzYXR1cmF0ZSIgdmFsdWVzPSIwIiBpbj0idHVyYnVsZW5jZSIgcmVzdWx0PSJub2lzZSIvPjxmZUJsZW5kIG1vZGU9Im92ZXJsYXkiIGluPSJub2lzZSIgaW4yPSJTb3VyY2VHcmFwaGljIiByZXN1bHQ9ImJsZW5kIi8+PC9maWx0ZXI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==');
+    opacity: 0.5;
+    z-index: -8;
+}
+
+.bg-element {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    filter: blur(20px);
+    opacity: 0;
+    transform: scale(0);
+    animation: float 20s linear infinite, pulse 8s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0) scale(1);
+    }
+    33% {
+        transform: translateY(-50px) translateX(30px) rotate(120deg) scale(1.1);
+    }
+    66% {
+        transform: translateY(30px) translateX(-50px) rotate(240deg) scale(0.9);
+    }
+    100% {
+        transform: translateY(0) translateX(0) rotate(360deg) scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

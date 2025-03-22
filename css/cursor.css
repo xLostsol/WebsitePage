@@ -1,0 +1,47 @@
+.cursor-light {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(59, 173, 227, 0.4) 50%, rgba(87, 111, 230, 0) 100%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: screen;
+    filter: blur(4px);
+    box-shadow: 0 0 15px rgba(59, 173, 227, 0.8), 0 0 30px rgba(87, 111, 230, 0.4);
+    transition: transform 0.05s ease, width 0.2s ease, height 0.2s ease;
+}
+
+.cursor-trail {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0;
+    mix-blend-mode: screen;
+    filter: blur(2px);
+    transition: opacity 0.3s ease;
+}
+
+body {
+    cursor: none;
+}
+
+a, button, input, textarea, .clickable {
+    cursor: none;
+}
+
+a:hover ~ .cursor-light,
+button:hover ~ .cursor-light,
+input:hover ~ .cursor-light,
+textarea:hover ~ .cursor-light,
+.clickable:hover ~ .cursor-light {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 0%, rgba(59, 173, 227, 0.5) 50%, rgba(87, 111, 230, 0) 100%);
+    transform: translate(-50%, -50%) scale(1.2);
+}
