@@ -11,6 +11,90 @@
     <script src="js/main.js" defer></script>
     <script src="js/background.js" defer></script>
     <script src="js/cursor.js" defer></script>
+    <style>
+        /* PC-only optimizations */
+        body {
+            min-width: 1024px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+        
+        /* Hide mobile menu elements */
+        .mobile-menu-btn, .mobile-menu {
+            display: none !important;
+        }
+        
+        /* About content optimizations */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        .experience-section,
+        .education-section,
+        .certifications-section,
+        .skills-section {
+            margin-bottom: 4rem;
+        }
+        
+        .experience-header,
+        .education-header,
+        .certification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* Skills layout in PC view */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            list-style: none;
+        }
+        
+        .skills-list li {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .skills-list li:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Certification cards layout */
+        .certification-card,
+        .education-card,
+        .experience-card {
+            padding: 1.75rem;
+            margin-bottom: 1.75rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    </style>
 </head>
 <body>
     <div class="animated-background">
@@ -22,11 +106,6 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">JB</a>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
@@ -35,16 +114,6 @@
             </ul>
         </div>
     </nav>
-
-    <div class="mobile-menu">
-        <div class="close-btn">&times;</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
 
     <main>
         <div class="page-header">
@@ -171,5 +240,11 @@
     </footer>
 
     <div class="overlay"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

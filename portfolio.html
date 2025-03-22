@@ -11,6 +11,84 @@
     <script src="js/main.js" defer></script>
     <script src="js/background.js" defer></script>
     <script src="js/cursor.js" defer></script>
+    <style>
+        /* PC-only optimizations */
+        body {
+            min-width: 1024px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+        
+        /* Hide mobile menu elements */
+        .mobile-menu-btn, .mobile-menu {
+            display: none !important;
+        }
+        
+        /* Portfolio grid optimization */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+        
+        .portfolio-card {
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .portfolio-image {
+            height: 220px;
+        }
+        
+        .portfolio-content {
+            flex: 1;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-content p {
+            flex: 1;
+            margin-bottom: 1.75rem;
+        }
+        
+        .portfolio-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .portfolio-links .btn {
+            padding: 0.625rem 1.25rem;
+        }
+    </style>
 </head>
 <body>
     <div class="animated-background">
@@ -22,11 +100,6 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">JB</a>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -35,16 +108,6 @@
             </ul>
         </div>
     </nav>
-
-    <div class="mobile-menu">
-        <div class="close-btn">&times;</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="portfolio.html" class="active">Portfolio</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
 
     <main>
         <div class="page-header">
@@ -129,5 +192,11 @@
     </footer>
 
     <div class="overlay"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

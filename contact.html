@@ -12,6 +12,86 @@
     <script src="js/form.js" defer></script>
     <script src="js/background.js" defer></script>
     <script src="js/cursor.js" defer></script>
+    <style>
+        /* PC-only optimizations */
+        body {
+            min-width: 1024px;
+            overflow-x: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+        
+        /* Hide mobile menu elements */
+        .mobile-menu-btn, .mobile-menu {
+            display: none !important;
+        }
+        
+        /* Email display styling */
+        .email-display {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--border-radius);
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+        }
+        
+        /* Contact methods grid */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        /* Form layout */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Location layout */
+        .location-info {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <div class="animated-background">
@@ -23,11 +103,6 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">JB</a>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -36,16 +111,6 @@
             </ul>
         </div>
     </nav>
-
-    <div class="mobile-menu">
-        <div class="close-btn">&times;</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-    </div>
 
     <main>
         <div class="page-header">
@@ -63,7 +128,7 @@
                     <p class="section-subtitle">I'm always open to discussing new opportunities, sharing ideas, or just having a friendly chat about technology and engineering.</p>
                 </div>
 
-                <div class="email-display" tabindex="0" role="button" aria-label="Click to reveal email address">
+                <div class="email-display">
                     <div class="email-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -230,24 +295,18 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const emailDisplay = document.querySelector('.email-display');
+            const emailContainer = document.querySelector('.email-container');
             const emailHidden = document.querySelector('.email-hidden');
             const emailAddress = document.querySelector('.email-address');
             
-            if (emailDisplay) {
-                emailDisplay.addEventListener('click', function() {
+            if (emailContainer) {
+                emailContainer.addEventListener('click', () => {
                     emailHidden.classList.add('hidden');
                     emailAddress.classList.remove('hidden');
                 });
-                
-                emailDisplay.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        emailHidden.classList.add('hidden');
-                        emailAddress.classList.remove('hidden');
-                        e.preventDefault();
-                    }
-                });
             }
+            
+            document.getElementById('current-year').textContent = new Date().getFullYear();
         });
     </script>
 </body>
